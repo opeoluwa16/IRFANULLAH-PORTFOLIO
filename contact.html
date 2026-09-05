@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Abdul-Fattah Irfanullah Opeoluwa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <a href="index.html" class="brand"><span class="mark-photo" role="img" aria-label="Irfanullah Abdulfattah Opeoluwa"></span> Irfanullah</a>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="capabilities.html">What I Can Do</a>
+      <a href="work.html">Work</a>
+      <a href="beyond.html">Beyond Code</a>
+      <a href="trainings.html">Trainings</a>
+      <a href="awards.html">Awards</a>
+      <a href="contact.html" class="nav-contact-mobile">Contact</a>
+    </div>
+<div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark and light mode">
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <a href="contact.html" class="btn hire-btn">Hire Me</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div class="wrap" id="contact">
+  <section class="contact">
+    <div>
+      <h2>Let's work together</h2>
+      <p class="contact-sub">Looking for the more complete work catalog, or want to talk through a project? Reach out — I usually reply within a day.</p>
+      <div class="contact-list">
+        <a href="mailto:irfanullah.opeoluwa@gmail.com"><span class="ic">@</span> irfanullah.opeoluwa@gmail.com</a>
+      </div>
+    </div>
+    <div class="form-card">
+      <form action="https://formspree.io/f/mzebggvn" method="POST" id="contactForm">
+        <div class="field"><label>Name</label><input type="text" name="name" placeholder="Your full name" required></div>
+        <div class="field"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required></div>
+        <div class="field"><label>Message</label><textarea name="message" placeholder="Tell me about the project..." required></textarea></div>
+        <button type="submit" class="btn">Send message</button>
+        <p id="formStatus" class="form-status"></p>
+      </form>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <footer>
+    <span>© 2026 Abdul-Fattah Irfanullah Opeoluwa</span>
+    <span>Built with care.</span>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+<script>
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(contactForm);
+      formStatus.textContent = 'Sending...';
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          formStatus.textContent = "Thanks — your message has been sent. I'll get back to you soon.";
+          contactForm.reset();
+        } else {
+          formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
+        }
+      } catch (err) {
+        formStatus.textContent = 'Something went wrong. Please try again or email me directly.';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
