@@ -7,6 +7,36 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* Projects section — uses the existing colour variables from style.css */
+  .projects-section{padding-bottom:24px;}
+  .projects-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .project-card{
+    display:flex; flex-direction:column;
+    background:var(--bg-raised); border:1px solid var(--border);
+    border-radius:14px; overflow:hidden;
+    transition:border-color .15s ease;
+  }
+  .project-card:hover{border-color:var(--accent);}
+  .project-shot{
+    display:block; aspect-ratio:16/10; overflow:hidden;
+    background:var(--bg-inset); border-bottom:1px solid var(--border);
+  }
+  .project-shot img{width:100%; height:100%; object-fit:cover; object-position:top; display:block;}
+  .project-body{padding:22px 24px 24px; display:flex; flex-direction:column; flex:1;}
+  .project-body h3{font-size:1.1rem; margin-bottom:8px;}
+  .project-body p{color:var(--text-dim); font-size:.9rem; line-height:1.6; margin-bottom:16px;}
+  .project-body .tag-row{margin-bottom:20px;}
+  .project-link{
+    margin-top:auto; align-self:flex-start;
+    font-size:.86rem; font-weight:600; color:var(--accent);
+    border-bottom:1px solid transparent; padding-bottom:2px;
+  }
+  .project-link:hover{border-bottom-color:var(--accent);}
+  .project-link:focus-visible, .project-shot:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  @media(max-width:980px){ .projects-grid{grid-template-columns:1fr 1fr;} }
+  @media(max-width:620px){ .projects-grid{grid-template-columns:1fr;} }
+</style>
 </head>
 <body>
 <header>
@@ -34,6 +64,57 @@
   </nav>
 </header>
 
+<!-- PROJECTS -->
+<div class="wrap" id="projects">
+  <section class="projects-section">
+    <div class="section-head">
+      <div class="kicker">Projects</div>
+      <h2>Work I've built</h2>
+      <p>Live websites and systems I've designed and developed. Open any project to see it running.</p>
+    </div>
+    <div class="projects-grid">
+
+      <article class="project-card">
+        <a class="project-shot" href="https://fasjet2.vercel.app/" target="_blank" rel="noopener" aria-label="Open Fasjet Solutions website">
+          <img src="images/fasjet-solutions-1.png" alt="Fasjet Solutions website home page with the headline 'Power up your plant with engineering you can trust'" loading="lazy">
+        </a>
+        <div class="project-body">
+          <h3>Fasjet Solutions — Company Website</h3>
+          <p>A corporate website for an industrial electrical and network infrastructure company, with clear service pages and quote-request calls to action.</p>
+          <div class="tag-row"><span>Web Development</span><span>Responsive Design</span><span>Vercel</span></div>
+          <a class="project-link" href="https://fasjet2.vercel.app/" target="_blank" rel="noopener">Visit live site →</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <a class="project-shot" href="https://fasjetsolution-website.vercel.app/" target="_blank" rel="noopener" aria-label="Open Fasjet Solutions website, second version">
+          <img src="images/fasjet-solutions-2.png" alt="Fasjet Solutions website featuring an electrician working on a control panel" loading="lazy">
+        </a>
+        <div class="project-body">
+          <h3>Fasjet Solutions — Website</h3>
+          <p>A second version of the Fasjet site with a photo-led layout that puts real electrical work front and centre to build trust with industrial clients.</p>
+          <div class="tag-row"><span>Front-End</span><span>UI Design</span><span>Vercel</span></div>
+          <a class="project-link" href="https://fasjetsolution-website.vercel.app/" target="_blank" rel="noopener">Visit live site →</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <a class="project-shot" href="https://green-field-school-portal.vercel.app/" target="_blank" rel="noopener" aria-label="Open Greenfield Secondary School portal">
+          <img src="images/greenfield-portal.png" alt="Greenfield Secondary School portal sign-in page" loading="lazy">
+        </a>
+        <div class="project-body">
+          <h3>Greenfield Secondary School Portal</h3>
+          <p>A school portal with separate logins for students, teachers, parents and administrators, covering results, attendance, assignments, fees and messages.</p>
+          <div class="tag-row"><span>Web App</span><span>Role-Based Login</span><span>Database-Driven</span></div>
+          <a class="project-link" href="https://green-field-school-portal.vercel.app/" target="_blank" rel="noopener">Visit live site →</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+</div>
+
+<!-- SERVICES -->
 <div class="wrap" id="work">
   <section>
     <div class="section-head">
