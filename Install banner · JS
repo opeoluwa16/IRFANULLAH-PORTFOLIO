@@ -1,0 +1,69 @@
+/*
+  install-banner.js
+  Add this file to the web/ folder of OpePay, LuwaPay (and OFSA), then add
+  <script src="install-banner.js"></script> inside the <body> of web/index.html
+  and redeploy. When someone opens the app from the portfolio "Install app"
+  button (the link ends in ?install=1), an install button appears.
+*/
+(function () {
+  var wantsInstall = new URLSearchParams(location.search).get('install') === '1';
+  if (!wantsInstall) return;
+
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  if (standalone) return;
+
+  var deferred = null;
+  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+  function bar(text, buttonText, onClick) {
+    if (document.getElementById('pwa-install-bar')) return;
+    var b = document.createElement('div');
+    b.id = 'pwa-install-bar';
+    b.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:99999;display:flex;align-items:center;gap:12px;' +
+      'padding:12px 14px;border-radius:14px;background:#1a1d24;color:#fff;font:500 14px/1.4 system-ui,sans-serif;' +
+      'box-shadow:0 8px 30px rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12)';
+    var t = document.createElement('span');
+    t.style.flex = '1';
+    t.textContent = text;
+    b.appendChild(t);
+    if (buttonText) {
+      var btn = document.createElement('button');
+      btn.textContent = buttonText;
+      btn.style.cssText = 'border:0;border-radius:10px;padding:10px 16px;font:600 14px system-ui,sans-serif;background:#e8a33d;color:#1a1200;cursor:pointer';
+      btn.onclick = onClick;
+      b.appendChild(btn);
+    }
+    var x = document.createElement('button');
+    x.setAttribute('aria-label', 'Close');
+    x.textContent = '\u00d7';
+    x.style.cssText = 'border:0;background:transparent;color:#aaa;font-size:22px;line-height:1;cursor:pointer';
+    x.onclick = function () { b.remove(); };
+    b.appendChild(x);
+    document.body.appendChild(b);
+  }
+
+  window.addEventListener('beforeinstallprompt', function (e) {
+    e.preventDefault();
+    deferred = e;
+    bar('Install this app on your phone.', 'Install', function () {
+      deferred.prompt();
+      deferred.userChoice.then(function () {
+        deferred = null;
+        var el = document.getElementById('pwa-install-bar');
+        if (el) el.remove();
+      });
+    });
+  });
+
+  window.addEventListener('appinstalled', function () {
+    var el = document.getElementById('pwa-install-bar');
+    if (el) el.remove();
+  });
+
+  // iPhone/iPad cannot show an install popup, so show the steps instead.
+  if (isIOS) {
+    window.addEventListener('load', function () {
+      bar('To install: tap the Share button, then "Add to Home Screen".');
+    });
+  }
+})();

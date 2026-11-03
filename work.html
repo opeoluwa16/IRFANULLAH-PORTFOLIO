@@ -40,6 +40,35 @@
     font-size:.74rem; color:var(--text-faint); border:1px solid var(--border);
     border-radius:6px; padding:4px 9px; display:inline-block; margin-bottom:14px;
   }
+
+  /* Autoplay carousel */
+  .car{position:relative; background:var(--bg-inset); border-bottom:1px solid var(--border);}
+  .car-track{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; aspect-ratio:4/5; -webkit-overflow-scrolling:touch;}
+  .car-track::-webkit-scrollbar{display:none;}
+  .car-slide{flex:0 0 100%; scroll-snap-align:center; display:flex; align-items:center; justify-content:center; padding:16px 0 8px; min-width:0;}
+  .car-slide img{height:100%; width:auto; max-width:92%; object-fit:contain; border-radius:12px; border:1px solid var(--border); display:block;}
+  .car-btn{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:2;
+    width:34px; height:34px; border-radius:50%; border:1px solid var(--border);
+    background:color-mix(in srgb, var(--bg) 80%, transparent); color:var(--text);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; backdrop-filter:blur(6px);
+  }
+  .car-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .car-btn:focus-visible, .car-dot:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .car-btn svg{width:16px; height:16px;}
+  .car-prev{left:8px;} .car-next{right:8px;}
+  .car-dots{display:flex; justify-content:center; gap:8px; padding:6px 0 12px;}
+  .car-dot{width:8px; height:8px; border-radius:50%; border:none; padding:0; cursor:pointer; background:var(--border);}
+  .car-dot.active{background:var(--accent);}
+  .project-actions{margin-top:auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap;}
+  .project-actions .project-link{margin-top:0;}
+  .btn-install{
+    display:inline-flex; align-items:center; gap:7px; font-size:.82rem; font-weight:600;
+    color:var(--accent-text); background:var(--accent); border-radius:8px; padding:8px 14px;
+  }
+  .btn-install svg{width:15px; height:15px;}
+  .btn-install:focus-visible{outline:2px solid var(--text); outline-offset:3px;}
+  .install-hint{font-size:.74rem; color:var(--text-faint); margin-top:10px; line-height:1.5;}
 </style>
 </head>
 <body>
@@ -79,9 +108,12 @@
     <div class="projects-grid">
 
       <article class="project-card">
-        <a class="project-shot" href="https://fasjet2.vercel.app/" target="_blank" rel="noopener" aria-label="Open Fasjet Solutions website">
-          <img src="images/fasjet-solutions-1.png" alt="Fasjet Solutions website home page with the headline 'Power up your plant with engineering you can trust'" loading="lazy">
-        </a>
+        <div class="car" data-carousel aria-roledescription="carousel" aria-label="Fasjet Solutions screenshots">
+          <div class="car-track"><div class="car-slide"><img src="images/fasjet-mobile-1.jpg" alt="Fasjet Solutions mobile home screen: power up your plant with engineering you can trust" loading="lazy"></div><div class="car-slide"><img src="images/fasjet-mobile-2.jpg" alt="Fasjet Solutions mobile capabilities section" loading="lazy"></div><div class="car-slide"><img src="images/fasjet-mobile-3.jpg" alt="Fasjet Solutions mobile featured projects section" loading="lazy"></div><div class="car-slide"><img src="images/fasjet-solutions-1.png" alt="Fasjet Solutions desktop home page" loading="lazy"></div></div>
+          <button type="button" class="car-btn car-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button type="button" class="car-btn car-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <div class="car-dots"></div>
+        </div>
         <div class="project-body">
           <h3>Fasjet Solutions — Company Website</h3>
           <p>A corporate website for an industrial electrical and network infrastructure company, with clear service pages and quote-request calls to action.</p>
@@ -115,15 +147,61 @@
       </article>
 
       <article class="project-card">
-        <a class="project-shot portrait-shot" href="https://ofsa-store.vercel.app/" target="_blank" rel="noopener" aria-label="Open OFSA — Opeoluwa Food and Store">
-          <img src="images/ofsa-store.jpeg" alt="OFSA app home screen showing the OPEOLUWA Food and Store header, search bar, hero banner and a shop now button" loading="lazy">
-        </a>
+        <div class="car" data-carousel aria-roledescription="carousel" aria-label="OFSA app screenshots">
+          <div class="car-track"><div class="car-slide"><img src="images/ofsa-1.jpg" alt="OFSA home screen with search, hero banner and cart bar" loading="lazy"></div><div class="car-slide"><img src="images/ofsa-2.jpg" alt="OFSA welcome screen: fresh food and groceries delivered" loading="lazy"></div><div class="car-slide"><img src="images/ofsa-3.jpg" alt="OFSA login screen with email and Google sign-in" loading="lazy"></div><div class="car-slide"><img src="images/ofsa-4.jpg" alt="OFSA cart with subtotal, delivery fee and checkout" loading="lazy"></div><div class="car-slide"><img src="images/ofsa-5.jpg" alt="OFSA about page" loading="lazy"></div></div>
+          <button type="button" class="car-btn car-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button type="button" class="car-btn car-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <div class="car-dots"></div>
+        </div>
         <div class="project-body">
           <h3>OFSA — Opeoluwa Food &amp; Store</h3>
           <span class="status-note">Personal project · not yet on the Play Store</span>
           <p>A food and grocery ordering app built for a local store, with a customer storefront, cart, bank-transfer checkout with receipt upload, order tracking and reviews, plus an admin dashboard for managing products, payments and deliveries. Built with Flutter web and Supabase, and deployed as an installable web app.</p>
           <div class="tag-row"><span>Flutter</span><span>Supabase</span><span>Full-Stack</span><span>PWA</span></div>
-          <a class="project-link" href="https://ofsa-store.vercel.app/" target="_blank" rel="noopener">Visit live app →</a>
+          <div class="project-actions">
+            <a class="project-link" href="https://ofsa-store.vercel.app/" target="_blank" rel="noopener">Open live demo →</a>
+            <a class="btn-install" href="https://ofsa-store.vercel.app/?install=1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><polyline points="7 11 12 16 17 11"/><path d="M5 21h14"/></svg>Install app</a>
+          </div>
+          <p class="install-hint">Install opens the app and prompts you to add it to your home screen. On iPhone: Share, then Add to Home Screen.</p>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="car" data-carousel aria-roledescription="carousel" aria-label="OpePay screenshots">
+          <div class="car-track"><div class="car-slide"><img src="images/opepay-1.jpg" alt="OpePay welcome screen" loading="lazy"></div><div class="car-slide"><img src="images/opepay-2.jpg" alt="OpePay login screen" loading="lazy"></div><div class="car-slide"><img src="images/opepay-3.jpg" alt="OpePay dashboard with balance, transfers and bill payments" loading="lazy"></div><div class="car-slide"><img src="images/opepay-4.jpg" alt="OpePay transaction history" loading="lazy"></div><div class="car-slide"><img src="images/opepay-5.jpg" alt="OpePay transaction details with receipt download" loading="lazy"></div><div class="car-slide"><img src="images/opepay-6.jpg" alt="OpePay report wrong transfer form" loading="lazy"></div></div>
+          <button type="button" class="car-btn car-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button type="button" class="car-btn car-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <div class="car-dots"></div>
+        </div>
+        <div class="project-body">
+          <h3>OpePay — Digital Bank</h3>
+          <span class="status-note">Demo app · no real money · first load can take up to a minute</span>
+          <p>A fictional Nigerian mobile bank I designed and built end to end. Customers open an account, add demo funds, send money to other customers and to another bank, and get bank-style receipts. Every movement is recorded twice in a ledger so the books balance, and I tested 20 simultaneous payments to prove an account can never be overdrawn. Includes PIN-protected transfers, device verification, an audit trail, and a wrong-transfer dispute flow.</p>
+          <div class="tag-row"><span>Flutter</span><span>Node.js</span><span>TypeScript</span><span>PostgreSQL</span><span>Supabase</span><span>Render</span><span>Vercel</span></div>
+          <div class="project-actions">
+            <a class="project-link" href="https://opepay.vercel.app/" target="_blank" rel="noopener">Open live demo →</a>
+            <a class="btn-install" href="https://opepay.vercel.app/?install=1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><polyline points="7 11 12 16 17 11"/><path d="M5 21h14"/></svg>Install app</a>
+          </div>
+          <p class="install-hint">Install opens the app and prompts you to add it to your home screen. On iPhone: Share, then Add to Home Screen.</p>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="car" data-carousel aria-roledescription="carousel" aria-label="LuwaPay screenshots">
+          <div class="car-track"><div class="car-slide"><img src="images/luwapay-1.jpg" alt="LuwaPay welcome screen" loading="lazy"></div><div class="car-slide"><img src="images/luwapay-2.jpg" alt="LuwaPay login screen" loading="lazy"></div><div class="car-slide"><img src="images/luwapay-3.jpg" alt="LuwaPay dashboard with balance, transfers and bill payments" loading="lazy"></div><div class="car-slide"><img src="images/luwapay-4.jpg" alt="LuwaPay transaction history" loading="lazy"></div><div class="car-slide"><img src="images/luwapay-5.jpg" alt="LuwaPay transaction details with receipt download" loading="lazy"></div><div class="car-slide"><img src="images/luwapay-6.jpg" alt="LuwaPay report wrong transfer form" loading="lazy"></div></div>
+          <button type="button" class="car-btn car-prev" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button type="button" class="car-btn car-next" aria-label="Next screenshot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+          <div class="car-dots"></div>
+        </div>
+        <div class="project-body">
+          <h3>LuwaPay — Sister Bank &amp; Payment Switch</h3>
+          <span class="status-note">Demo app · no real money · first load can take up to a minute</span>
+          <p>The sister bank to OpePay: a full banking app on its own, and together with OpePay it proves two independent banks can send money to each other safely. I built a payment switch where every message is digitally signed and time-stamped so it can't be forged or replayed, and timed-out transfers are checked before any refund so a customer is never charged twice. Own green-and-gold identity, database and server, sharing one codebase with OpePay.</p>
+          <div class="tag-row"><span>Flutter</span><span>Node.js</span><span>TypeScript</span><span>PostgreSQL</span><span>Supabase</span><span>Render</span><span>Vercel</span></div>
+          <div class="project-actions">
+            <a class="project-link" href="https://luwapay.vercel.app/" target="_blank" rel="noopener">Open live demo →</a>
+            <a class="btn-install" href="https://luwapay.vercel.app/?install=1" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><polyline points="7 11 12 16 17 11"/><path d="M5 21h14"/></svg>Install app</a>
+          </div>
+          <p class="install-hint">Install opens the app and prompts you to add it to your home screen. On iPhone: Share, then Add to Home Screen.</p>
         </div>
       </article>
 
@@ -192,6 +270,43 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-carousel]').forEach(function(root){
+    var track=root.querySelector('.car-track'), slides=track.children, n=slides.length;
+    var dotsBox=root.querySelector('.car-dots'), idx=0, interacting=false, visible=true, resumeT=null;
+    var dots=[];
+    for(var i=0;i<n;i++){
+      (function(i){
+        var d=document.createElement('button'); d.type='button'; d.className='car-dot';
+        d.setAttribute('aria-label','Go to screenshot '+(i+1));
+        d.addEventListener('click',function(){pause(); go(i); resumeSoon();});
+        dotsBox.appendChild(d); dots.push(d);
+      })(i);
+    }
+    function setDot(i){dots.forEach(function(d,k){d.classList.toggle('active',k===i);});}
+    function go(i){ idx=(i+n)%n; track.scrollTo({left:idx*track.clientWidth, behavior:'smooth'}); setDot(idx); }
+    function pause(){interacting=true; clearTimeout(resumeT);}
+    function resumeSoon(){clearTimeout(resumeT); resumeT=setTimeout(function(){interacting=false;},3000);}
+    root.querySelector('.car-prev').addEventListener('click',function(){pause(); go(idx-1); resumeSoon();});
+    root.querySelector('.car-next').addEventListener('click',function(){pause(); go(idx+1); resumeSoon();});
+    track.addEventListener('scroll',function(){
+      var i=Math.round(track.scrollLeft/track.clientWidth); if(i!==idx && i>=0 && i<n){idx=i; setDot(i);}
+    },{passive:true});
+    ['touchstart','pointerdown','mouseenter','focusin'].forEach(function(e){root.addEventListener(e,pause,{passive:true});});
+    ['touchend','touchcancel','pointerup','mouseleave','focusout'].forEach(function(e){root.addEventListener(e,resumeSoon,{passive:true});});
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(en){visible=en[0].isIntersecting;},{threshold:0.3}).observe(root);
+    }
+    setDot(0);
+    if(!reduce && n>1){
+      setInterval(function(){ if(!interacting && visible && !document.hidden) go(idx+1); },3500);
+    }
+  });
+})();
+</script>
+
 
 </body>
 </html>
